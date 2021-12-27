@@ -17,6 +17,7 @@ public class EnemyAttackTrigger : MonoBehaviour
       if (other.CompareTag(TagManager.PLAYERTAG))
       {
          _enemyAnim.PlayAttack();
+         SoundManager.instance.EnemyAttackSound();
       }
    }
 }

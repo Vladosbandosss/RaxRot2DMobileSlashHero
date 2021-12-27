@@ -13,8 +13,14 @@ public class CameraFollow : MonoBehaviour
 
    private void Awake()
    {
+      //FindPlayerRef();
+   }
+
+   public void FindPlayerRef()
+   {
       playerPos = GameObject.FindWithTag(TagManager.PLAYERTAG).transform;
    }
+
 
    private void LateUpdate()
    {

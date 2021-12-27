@@ -38,18 +38,30 @@ public class PlayerMovement : MonoBehaviour
       AnimatePlayer();
       //GetAttackInput();
       //HandleAttack();
+      if (Input.GetMouseButtonDown(0))
+      {
+         if (Input.mousePosition.x < Screen.width / 2)
+         {
+            JumpButton();
+         }
+         else
+         {
+            AttackButton();
+         }
+      }
    }
 
    private void FixedUpdate()
    {
       MovePlayer();
    }
-
+   
    public void JumpButton()
    {
      
       if (!IsGrounded()&&canDoubleJump)
       {
+         SoundManager.instance.PlayJumpSound();
          canDoubleJump = false;
          rb.velocity=Vector2.zero;
          rb.AddForce(new Vector2(0f,jumpForce),ForceMode2D.Impulse);
@@ -58,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
          
       }
       if (IsGrounded())
-      {
+      { SoundManager.instance.PlayJumpSound();
          canDoubleJump = true;
          rb.AddForce(new Vector2(0f,jumpForce),ForceMode2D.Impulse);
       }
@@ -128,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
      {
         attackTimer = Time.time + attackWaitTime;
         canAttack = true;
-        
+        SoundManager.instance.PlayAttackSound();
         if (canAttack && IsGrounded())
         {
            canAttack = false;

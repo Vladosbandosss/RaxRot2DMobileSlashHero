@@ -11,6 +11,9 @@ TagManager:
   - Obstacle
   - Healh
   - Health
+  - GameplayController
+  - HealthBarHolder
+  - ButtonsHolder
   layers:
   - Default
   - TransparentFX

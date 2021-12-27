@@ -13,6 +13,7 @@ public class DealDamage : MonoBehaviour
       {
          
          other.GetComponent<PlayerHealth>().SubtractHealth();
+         
          Debug.Log("атакую игрока");
          if (deactivateGameObject)
          {

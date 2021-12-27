@@ -30,7 +30,7 @@ public class GamePlayController : MonoBehaviour
 
     private void Start()
     {
-        PlayerPrefs.DeleteAll();///////
+        //PlayerPrefs.DeleteAll();///////
         int gameData = DataManger.GetDate(TagManager.DATAINITIALIZED);
       
         if (gameData == 0)
@@ -41,8 +41,8 @@ public class GamePlayController : MonoBehaviour
             DataManger.SaveData(TagManager.HIGHSCOREDATA,0);
             
             DataManger.SaveData(TagManager.CHARACTERDATA+ "0",1);
-            DataManger.SaveData(TagManager.CHARACTERDATA+ "1",0);
-            DataManger.SaveData(TagManager.CHARACTERDATA+ "2",0);
+            DataManger.SaveData(TagManager.CHARACTERDATA+ "1",1);
+            DataManger.SaveData(TagManager.CHARACTERDATA+ "2",1);
             
             DataManger.SaveData(TagManager.DATAINITIALIZED,1);
         }else if (gameData == 1)
@@ -53,22 +53,24 @@ public class GamePlayController : MonoBehaviour
 
     private void OnEnable()
     {
-        //SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable()
     {
-       // SceneManager.sceneLoaded -= OnSceneLoaded;
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    /*
+    
     private void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
     {
         if (scene.name == TagManager.GAMEPLAYSCENENAME)
         {
+            
             Instantiate(players[selectedCharacter]);
             
             Camera.main.GetComponent<CameraFollow>().FindPlayerRef();
         }
-    }*/
+        
+    }
 }

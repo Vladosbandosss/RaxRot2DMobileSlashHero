@@ -1,18 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CharacterSelectMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private Button [] charSelectButtons;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] private GameObject[] selectedCharCheckBox;
+
+    public void InitializeCharMenu()
     {
-        
+        for (int i = 0; i < charSelectButtons.Length; i++)
+        {
+            int charData = DataManger.GetDate(TagManager.CHARACTERDATA + i.ToString());
+
+            if (charData == 0)
+            {
+                charSelectButtons[i].interactable = false;
+            }
+            
+            selectedCharCheckBox[i].SetActive(false);
+        }
+        selectedCharCheckBox[DataManger.GetDate(TagManager.SELECTEDCHARACTERDATA)].SetActive(true);
     }
 }

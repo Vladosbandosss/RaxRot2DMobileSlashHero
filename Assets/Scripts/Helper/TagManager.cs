@@ -50,4 +50,7 @@ public static class TagManager
    public static string HIGHSCOREDATA = "Highscore";
 
    public static string DATAINITIALIZED = "DataInitialized";
+
+
+   public static string HEALTHBARHOLDER = "HealthBarHolder";
 }

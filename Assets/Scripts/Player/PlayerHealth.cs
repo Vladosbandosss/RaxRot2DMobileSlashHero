@@ -11,6 +11,11 @@ public class PlayerHealth : MonoBehaviour
 
    private int health;
 
+   private void Awake()
+   {
+      healthBars = GameObject.FindWithTag(TagManager.HEALTHBARHOLDER).GetComponent<HealthBarHolder>().healthBars;
+   }
+
    private void Start()
    {
       health = healthBars.Length;
@@ -19,19 +24,26 @@ public class PlayerHealth : MonoBehaviour
 
    public void SubtractHealth()
    {
+      SoundManager.instance.ObstacleDestroySound();
       healthBars[currentHealthBarIndex].SetActive(false);
       currentHealthBarIndex--;
       health--;
 
       if (health <= 0)
       {
-         //goscript
+        
+         
+         GameObject.FindWithTag(TagManager.GAMEPLAYCONTROLLERTAG)
+            .GetComponent<GameOverController>().GameOverShowPanel();
+         
          Destroy(gameObject);
+         
       }
    }
 
   private void AddHealth()
    {
+      SoundManager.instance.CollectableSound();
       if (health == healthBars.Length)
       {
          return;
@@ -49,6 +61,7 @@ public class PlayerHealth : MonoBehaviour
       
       if (other.CompareTag(TagManager.HEALTHTAG))
       {
+        
          AddHealth();
          
          Destroy(other.gameObject);
