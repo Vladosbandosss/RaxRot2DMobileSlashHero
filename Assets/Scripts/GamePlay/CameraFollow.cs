@@ -10,18 +10,12 @@ public class CameraFollow : MonoBehaviour
    [SerializeField] private float offsetX = 6f;
 
    private Vector3 temp;
-
-   private void Awake()
-   {
-      //FindPlayerRef();
-   }
-
+   
    public void FindPlayerRef()
    {
       playerPos = GameObject.FindWithTag(TagManager.PLAYERTAG).transform;
    }
-
-
+   
    private void LateUpdate()
    {
       FollowPlayer();

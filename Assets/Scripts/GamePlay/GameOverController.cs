@@ -12,6 +12,8 @@ public class GameOverController : MonoBehaviour
 
     private ScoreCounter _scoreCounter;
 
+    private string HSCORE = "hightScore";
+
     private void Awake()
     {
         _scoreCounter = GetComponent<ScoreCounter>();
@@ -26,36 +28,30 @@ public class GameOverController : MonoBehaviour
       
         DisplayScore();
         
-        CheCkToUnlockNewCharacters(_scoreCounter.GetScore());
     }
 
     private void DisplayScore()
     {
         currentScore.text = "Score: " + _scoreCounter.GetScore() +"m";
-        if (PlayerPrefs.HasKey("hightScore"))
+        if (PlayerPrefs.HasKey(HSCORE))
         {
-            if (_scoreCounter.GetScore() > PlayerPrefs.GetInt("hightScore"))
+            if (_scoreCounter.GetScore() > PlayerPrefs.GetInt(HSCORE))
             {
-                PlayerPrefs.SetInt("hightScore",_scoreCounter.GetScore());
+                PlayerPrefs.SetInt(HSCORE,_scoreCounter.GetScore());
                 bestScore.text ="HighScore: " + _scoreCounter.GetScore().ToString() + "m";
             } 
             else
             {
-                bestScore.text ="HighScore:" +PlayerPrefs.GetInt("hightScore").ToString() + "m";
+                bestScore.text ="HighScore:" +PlayerPrefs.GetInt(HSCORE).ToString() + "m";
             }
         }
+        
         else
         {
-            PlayerPrefs.SetInt("hightScore",_scoreCounter.GetScore());
+            PlayerPrefs.SetInt(HSCORE,_scoreCounter.GetScore());
             bestScore.text ="HighScore:" +  _scoreCounter.GetScore().ToString() +"m";
         }
         
     }
-
-    private void CheCkToUnlockNewCharacters(int score)
-    {
-        
-    }
-    
     
 }

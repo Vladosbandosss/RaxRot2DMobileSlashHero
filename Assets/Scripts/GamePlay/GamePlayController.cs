@@ -13,10 +13,10 @@ public class GamePlayController : MonoBehaviour
     [SerializeField] private int char2UnlockSore = 10, char3UnlockScore = 20;
 
     [SerializeField] private GameObject[] players;
-    
-    
+
     private void Awake()
     {
+       
         if (instance != null)
         {
             Destroy(gameObject);
@@ -30,12 +30,10 @@ public class GamePlayController : MonoBehaviour
 
     private void Start()
     {
-        //PlayerPrefs.DeleteAll();///////
         int gameData = DataManger.GetDate(TagManager.DATAINITIALIZED);
       
         if (gameData == 0)
         {
-            //первый раз зпустил
             selectedCharacter = 0;
             DataManger.SaveData(TagManager.SELECTEDCHARACTERDATA,selectedCharacter);
             DataManger.SaveData(TagManager.HIGHSCOREDATA,0);
@@ -60,7 +58,6 @@ public class GamePlayController : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-
     
     private void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
     {

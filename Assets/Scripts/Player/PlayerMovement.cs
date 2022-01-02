@@ -34,10 +34,8 @@ public class PlayerMovement : MonoBehaviour
 
    private void Update()
    {
-      //PlayerJump();
       AnimatePlayer();
-      //GetAttackInput();
-      //HandleAttack();
+      
       if (Input.GetMouseButtonDown(0))
       {
          if (Input.mousePosition.x < Screen.width / 2)
@@ -86,61 +84,22 @@ public class PlayerMovement : MonoBehaviour
       return Physics2D.OverlapCircle(groundCheckPos.position, radiusGroundCheck, groundLayer);
    }
 
-   private void PlayerJump()//не в работе снесу потом
-   {
-      if (Input.GetKeyDown(KeyCode.Space))
-      {
-         if (!IsGrounded()&&canDoubleJump)
-         {
-            canDoubleJump = false;
-            rb.velocity=Vector2.zero;
-            rb.AddForce(new Vector2(0f,jumpForce),ForceMode2D.Impulse);
-         }
-         if (IsGrounded())
-         {
-            canDoubleJump = true;
-            rb.AddForce(new Vector2(0f,jumpForce),ForceMode2D.Impulse);
-         }
-      }
-   }
 
   private void AnimatePlayer()
    {
       _playerAnim.PlayJump(rb.velocity.y);
       _playerAnim.PlayFromJumpToRunning(IsGrounded());
    }
-
-  void GetAttackInput()
-  {
-     if (Input.GetKeyDown(KeyCode.K))
-     {
-        if (Time.time > attackTimer)
-        {
-           attackTimer = Time.time + attackWaitTime;
-           canAttack = true;
-        }
-     }
-  }
-
-  void HandleAttack()
-  {
-     if (canAttack && IsGrounded())
-     {
-        canAttack = false;
-        _playerAnim.PlayAttack();
-     }else if (canAttack && !IsGrounded())
-     {
-        _playerAnim.PlayJumpAttack();
-     }
-  }
-
+  
   public void AttackButton()
   {
      if (Time.time > attackTimer)
      {
         attackTimer = Time.time + attackWaitTime;
         canAttack = true;
+        
         SoundManager.instance.PlayAttackSound();
+        
         if (canAttack && IsGrounded())
         {
            canAttack = false;
@@ -150,7 +109,6 @@ public class PlayerMovement : MonoBehaviour
            _playerAnim.PlayJumpAttack();
         }
      }
-     
-     
   }
-}
+  
+}//class

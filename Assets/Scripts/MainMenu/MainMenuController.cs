@@ -12,14 +12,15 @@ public class MainMenuController : MonoBehaviour
    [SerializeField] private Text highScore;
 
    private CharacterSelectMenu _characterSelectMenu;
+
+   private string HSCORE = "hightScore";
    
    private void Start()
    {
-     // highScore.text ="HighScore: " + DataManger.GetDate(TagManager.HIGHSCOREDATA) + "m";
-     
-     if (PlayerPrefs.HasKey("hightScore"))
+      
+      if (PlayerPrefs.HasKey(HSCORE))
      {
-        highScore.text ="HighScore: " + PlayerPrefs.GetInt("hightScore").ToString() +"m";
+        highScore.text ="HighScore: " + PlayerPrefs.GetInt(HSCORE).ToString() +"m";
      }
      else
      {

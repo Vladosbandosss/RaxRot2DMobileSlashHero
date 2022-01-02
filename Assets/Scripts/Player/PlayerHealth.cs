@@ -24,7 +24,7 @@ public class PlayerHealth : MonoBehaviour
 
    public void SubtractHealth()
    {
-      SoundManager.instance.ObstacleDestroySound();
+     
       healthBars[currentHealthBarIndex].SetActive(false);
       currentHealthBarIndex--;
       health--;
@@ -39,6 +39,8 @@ public class PlayerHealth : MonoBehaviour
          Destroy(gameObject);
          
       }
+      SoundManager.instance.ObstacleDestroySound();
+      ShakeCamera.instance.Shake();
    }
 
   private void AddHealth()

@@ -19,6 +19,7 @@ public class SoundManager : MonoBehaviour
         enemyDeadSound,
         collectableSound,
         destroyObstacleSound;
+    
     private void Awake()
     {
         if (instance != null)
@@ -42,6 +43,7 @@ public class SoundManager : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+    
     private void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
     {
         if (scene.name == TagManager.GAMEPLAYSCENENAME)
@@ -69,18 +71,20 @@ public class SoundManager : MonoBehaviour
 
      public void PlayGameOverSound()
      {
-        // AudioSource.PlayClipAtPoint(gameOverSound,transform.position);
+         gameOverAudio.volume = 1f;
         gameOverAudio.Play();
      }
 
      public void PlayAttackSound()
      {
          AudioSource.PlayClipAtPoint(playerAttackSound,Camera.main.transform.position);
+        
      }
 
      public void PlayJumpSound()
      {
          AudioSource.PlayClipAtPoint(playerJumpSound,Camera.main.transform.position);
+        
      }
 
      public void PlayerDeathSound()
@@ -91,6 +95,7 @@ public class SoundManager : MonoBehaviour
      public void EnemyAttackSound()
      {
          AudioSource.PlayClipAtPoint(enemyAttackSound,Camera.main.transform.position);
+         
      }
 
      public void EnemyDeadSound()

@@ -12,6 +12,7 @@ public class EnemyHealth : MonoBehaviour
        {
           SoundManager.instance.EnemyDeadSound();
        }
+       
        else
        {
            SoundManager.instance.ObstacleDestroySound();
